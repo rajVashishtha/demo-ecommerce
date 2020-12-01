@@ -1,24 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import {Switch, Route, Redirect} from 'react-router-dom';
+import DemoPage from './page/demopage/demopage.page';
+import VerificationPage from './page/verification/verification.page';
+import PaymentPage from './page/payment_init/payment_init.page'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Typography } from '@material-ui/core';
+
+const SuccessPage = ()=>{
+  return(
+    <div>
+      <Typography variant="h2" align="center">Payment Successful</Typography>
+    </div>
+  )
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Switch>
+      <Route exact path="/" render={props=><Redirect to={{pathname:"/info"}} />} />
+      <Route exact path="/info" component={DemoPage} />
+      <Route exact path="/info/verify" component={VerificationPage} />
+      <Route exact path="/payment" component={PaymentPage} />
+      <Route exact path="/payment/success" component={SuccessPage} />
+    </Switch>
   );
 }
 

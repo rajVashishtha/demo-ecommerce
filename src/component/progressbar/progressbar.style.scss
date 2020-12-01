@@ -1,0 +1,12 @@
+.for-progress-bar{
+    width:80%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:20px;
+}
+$breakpoint-tablet: 768px;
+@media (max-width: $breakpoint-tablet){
+    .for-progress-bar{
+        width:95%;
+    }
+}

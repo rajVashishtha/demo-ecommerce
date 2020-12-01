@@ -1,0 +1,47 @@
+.demopage{
+    display:flex;
+    flex-direction: row;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    .form{
+        width:55vw !important;
+        padding-left: 20px;
+        padding-right: 20px;
+        .form-item{
+            margin: 10px 20px !important;
+        }
+    }
+    .decorative{
+        display: flex;
+        background-color: #efffff;
+        width:45vw;
+    }
+}
+$breakpoint-tablet: 768px;
+@media (max-width: $breakpoint-tablet) {
+    .demopage{
+        display:flex;
+        flex-direction: column;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        .form{
+            width:90vw !important;
+            padding-left: 20px;
+            padding-right: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 20px;
+            .form-item{
+                margin: 10px 5px !important;
+                width:"90%"
+            }
+        }
+        .decorative{
+            display: flex;
+            background-color: #efffff;
+            width:90vw;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+}
