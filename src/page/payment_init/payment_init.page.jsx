@@ -2,8 +2,7 @@ import React from 'react';
 import Header from '../../component/header/header.component';
 import CustomProgressBar from '../../component/progressbar/progressbar.component';
 import { FormControl, FormHelperText, OutlinedInput, InputLabel, Typography } from '@material-ui/core';
-import {Button} from 'react-bootstrap';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import axios from 'axios';
 import { PayPalButton } from "react-paypal-button-v2";
 import { withRouter } from 'react-router';
 
@@ -19,7 +18,29 @@ class PaymentPage extends React.Component{
             [event.target.name]:event.target.value
         })
     }
+
+    sendInvoiceRequest = ()=>{
+        console.log("working");
+        const data = {
+            user_id : this.props.location.state.user_id,
+            product:this.props.location.state.product,
+            cost:this.state.quantity*25,
+            quantity:this.state.quantity
+        }
+        let formdata = new FormData()
+        formdata.append("user_id",data.user_id);
+        formdata.append("cost",data.cost);
+        formdata.append("product",data.product);
+        formdata.append("quantity",data.quantity);
+        axios.post("https://demo-mcafee.herokuapp.com/order_detail",formdata).then(res=>{
+            console.log(res.data);
+        }).catch(err=>{
+            console.log(err)
+        })
+    }
+
     render(){
+        
         return(
             <div>
                 <Header />
@@ -50,6 +71,7 @@ class PaymentPage extends React.Component{
                                     currency:"INR",
                                     clientId:"AdsOTV8ftYihXtgjYTifO4K8bRMsm9UerOPIYv_fe3nASrOMXtvrTKqn90-rqg6I85MeXfnnp3mwXdpo"
                                 }} createOrder={(data,action)=>{
+                                        this.sendInvoiceRequest();
                                         return action.order.create({
                                             purchase_units:[{
                                                 amount:{

@@ -52,7 +52,7 @@ class DemoPage extends React.Component{
             await formdata.append("email",this.state.email);
             await formdata.append("billing_address",this.state.billing);
             await formdata.append("shipping_address",this.state.shipping);
-            await formdata.append("product",this.state.product)
+            await formdata.append("product",this.state.product);
             axios.post("https://demo-mcafee.herokuapp.com/store",formdata).then(res=>{
                 console.log(res)
                 const user_id = res.data.message.user_id;
@@ -120,10 +120,10 @@ class DemoPage extends React.Component{
                             }}>Select Product{this.state.emptyProduct?" *":""}</Form.Label>
                             <Form.Control as="select" size="lg" name="product" custom onChange={this.handleChange}>
                             <option selected disabled value="">None</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
+                            <option value="First">First</option>
+                            <option value="Demo product">Demo product</option>
+                            <option value="Neccessity">Neccessity</option>
+                            <option value="Value">Value</option>
                             </Form.Control>
                         </Form.Group>
                         <div style={{
